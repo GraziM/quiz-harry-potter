@@ -1,16 +1,13 @@
-import styled from 'styled-components'
-import db from '../db.json'
-import Widget from '../src/components/Widget'
-import Footer from '../src/components/Footer'
-import GitHubCorner from '../src/components/GitHubCorner'
-import QuizBackground from '../src/components/QuizBackground'
+import React from 'react';
+import styled from 'styled-components';
+import { useRouter } from 'next/router';
 
-// const BackgroundImage = styled.div`
-//   background-image: url(${db.bg});
-//   flex: 1;
-//   background-size: cover;
-//   background-position: center;
-// `
+import db from '../db.json';
+import Widget from '../src/components/Widget';
+import Footer from '../src/components/Footer';
+import GitHubCorner from '../src/components/GitHubCorner';
+import QuizBackground from '../src/components/QuizBackground';
+
 export const QuizContainer = styled.div`
   width: 100%;
   max-width: 350px;
@@ -23,7 +20,10 @@ export const QuizContainer = styled.div`
 `;
 
 export default function Home() {
-  return(
+  const router = useRouter();
+  const [name, setName] = React.useState('');
+
+  return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
         <Widget>
@@ -31,17 +31,34 @@ export default function Home() {
             <h1>Harry Potter</h1>
           </Widget.Header>
           <Widget.Content>
-            <p>lore ipsum dolor sit amet...</p>
+            <form onSubmit={function (event) {
+              event.preventDefault();
+              router.push(`/quiz?name=${name}`);
+              console.log('submitou :)');
+            }}
+            >
+              <input
+                onChange={function (event) {
+                  setName(event.target.value);
+                }}
+                placeholder="Diz aí o seu nome para jogar :)"
+              />
+              <button type="submit" disabled={name.length === 0}>
+                Jogar
+                {' '}
+                {name}
+              </button>
+            </form>
           </Widget.Content>
         </Widget>
         <Widget>
           <Widget.Content>
-              <p>lore ipsum dolor sit amet...</p>
+            <p>lorem ipsum dolor sit amet...</p>
           </Widget.Content>
         </Widget>
         <Footer />
       </QuizContainer>
       <GitHubCorner projectUrl="https://github.com/GraziM" />
     </QuizBackground>
-  )
+  );
 }
