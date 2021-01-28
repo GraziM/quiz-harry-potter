@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-export function QuizDaGaleraPage(){
-    return(
-        <div>
-            Próxima aula
-        </div>
-    )
+export default function QuizDaGaleraPage() {
+  return (
+    <div>
+      Próxima aula
+    </div>
+  );
 }
