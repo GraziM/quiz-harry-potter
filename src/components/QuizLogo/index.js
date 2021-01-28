@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const LogoImage = styled.img.attrs({
-  src: "https://www.nicepng.com/png/full/139-1390345_harry-potter-clipart-ico-harry-potter-logo-png.png"
+  src: 'https://www.nicepng.com/png/full/139-1390345_harry-potter-clipart-ico-harry-potter-logo-png.png',
 })`
   max-height: 100px;
   width: auto;
@@ -12,8 +12,7 @@ const LogoImage = styled.img.attrs({
   margin: auto;
 `;
 
-const LogoQuiz = styled.img
-
+const LogoQuiz = styled.img;
 
 function Logo({ className }) {
   return (

@@ -20,7 +20,7 @@ function ResultWidget({ results }) {
           {results.map((result, index) => (
 
             <li key={`result__${index}`}>
-              {`#${index+1} Resultado: ${result === true ? 'Acertou' : 'Errou'}`}
+              {`#${index + 1} Resultado: ${result === true ? 'Acertou' : 'Errou'}`}
             </li>
           ))}
 
@@ -29,8 +29,6 @@ function ResultWidget({ results }) {
     </Widget>
   );
 }
-
-
 
 function LoadingWidget() {
   return (
@@ -47,7 +45,7 @@ function LoadingWidget() {
 }
 
 function QuestionWidget({
-  question, totalQuestions, questionIndex, onSubmit, addResult
+  question, totalQuestions, questionIndex, onSubmit, addResult,
 }) {
   const [selectedAlternative, setSelectedAlternative] = React.useState(undefined);
   const [isQuestionSubmited, setIsQuestionSubmited] = React.useState(false);
@@ -84,13 +82,13 @@ function QuestionWidget({
             onSubmit();
             setIsQuestionSubmited(false);
             setSelectedAlternative(undefined);
-          }, 3 * 1000)
+          }, 3 * 1000);
         }}
         >
           {question.alternatives.map((alternative, alternativeIndex) => {
             const alternativeId = `alternative__${alternativeIndex}`;
-            const AlternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR'
-            const isSelected = selectedAlternative === alternativeIndex
+            const AlternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR';
+            const isSelected = selectedAlternative === alternativeIndex;
             return (
               <Widget.Topic
                 key={alternativeId}
@@ -141,7 +139,7 @@ export default function QuizPage() {
     setResults([
       ...results,
       result,
-    ])
+    ]);
   }
 
   React.useEffect(() => {
@@ -174,7 +172,7 @@ export default function QuizPage() {
         )}
         {screenState === screenStates.LOADING && <LoadingWidget />}
 
-        {screenState === screenStates.RESULT && <ResultWidget results={results}/>}
+        {screenState === screenStates.RESULT && <ResultWidget results={results} />}
       </QuizContainer>
     </QuizBackground>
   );
