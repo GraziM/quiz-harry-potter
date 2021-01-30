@@ -6,10 +6,10 @@ import PropTypes from 'prop-types';
 const LogoImage = styled.img.attrs({
   src: 'https://www.nicepng.com/png/full/139-1390345_harry-potter-clipart-ico-harry-potter-logo-png.png',
 })`
-  max-height: 100px;
+  max-height: 75px;
   width: auto;
   display: block;
-  margin: auto;
+  margin: 0 auto;
 `;
 
 const LogoQuiz = styled.img;

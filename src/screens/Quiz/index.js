@@ -1,11 +1,13 @@
 import React from 'react';
+import Lottie from 'react-lottie'
+import loadingAnimation from '../../lotties/loading-animation.json'
 
-import db from '../db.json';
-import Widget from '../src/components/Widget';
-import QuizBackground from '../src/components/QuizBackground';
-import QuizContainer from '../src/components/QuizContainer';
-import Button from '../src/components/Button';
-import AlternativesForm from '../src/components/AlternativesForm';
+import Widget from '../../components/Widget';
+import QuizBackground from '../../components/QuizBackground';
+import QuizContainer from '../../components/QuizContainer';
+import Button from '../../components/Button';
+import AlternativesForm from '../../components/AlternativesForm';
+import BackLinkArrow from "../../components/BackLinkArrow";
 
 function ResultWidget({ results }) {
   return (
@@ -31,14 +33,23 @@ function ResultWidget({ results }) {
 }
 
 function LoadingWidget() {
-  return (
-    <Widget>
-      <Widget.Header>
-        Carregando...
-      </Widget.Header>
+  const defaultOptions = {
+    loop: true,
+      autoplay: true,
+      animationData: loadingAnimation,
+      rendererSettings: {
+        preserveAspectRatio: "xMidYMid slice"
+      }
+  }
 
+  return (
+    <Widget style={{ backgroundColor: "transparent" }}>
       <Widget.Content>
-        [Desafio do loading]
+        <Lottie 
+            options={defaultOptions}
+            height={400}
+            width={400}
+          />
       </Widget.Content>
     </Widget>
   );
@@ -56,7 +67,7 @@ function QuestionWidget({
   return (
     <Widget>
       <Widget.Header>
-        {/* <BackLinkArrow href="/" */}
+        <BackLinkArrow href="/" />
         <h3>
           {`Pergunta ${questionIndex + 1} de ${totalQuestions}`}
         </h3>
@@ -127,13 +138,16 @@ const screenStates = {
   LOADING: 'LOADING',
 };
 
-export default function QuizPage() {
+export default function QuizPage({ externalQuestions, externalBg }) {
   const [screenState, setScreenState] = React.useState(screenStates.LOADING);
   const [results, setResults] = React.useState([]);
-  const totalQuestions = db.questions.length;
+  const totalQuestions = externalQuestions.length;
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
   const questionIndex = currentQuestion;
-  const question = db.questions[questionIndex];
+  const question = externalQuestions[questionIndex];
+  const style = {
+    margin: 'auto'
+  }
 
   function addResult(result) {
     setResults([
@@ -159,8 +173,8 @@ export default function QuizPage() {
   }
 
   return (
-    <QuizBackground backgroundImage={db.bg}>
-      <QuizContainer>
+    <QuizBackground backgroundImage={externalBg}>
+      <QuizContainer style={screenState === screenStates.LOADING ? style : {}}>
         {screenState === screenStates.QUIZ && (
           <QuestionWidget
             question={question}
