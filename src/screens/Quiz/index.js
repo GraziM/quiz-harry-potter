@@ -10,7 +10,7 @@ import Button from '../../components/Button';
 import AlternativesForm from '../../components/AlternativesForm';
 import BackLinkArrow from "../../components/BackLinkArrow";
 
-function ResultWidget({ results, widgetStyle, name }) {
+function ResultWidget({ results, widgetStyle, name, questions }) {
   const countRightAnswers = results.filter((x) => x).length
   const success = name ? `Parabéns, ${name}! Você é um verdadeiro conhecedor do universo!` : `Parabéns! Você é um verdadeiro conhecedor do universo!`
   const failure = name ? `Que pena, ${name}! Não foi dessa vez!` : `Que pena! Não foi dessa vez!`
@@ -24,11 +24,10 @@ function ResultWidget({ results, widgetStyle, name }) {
       <Widget.Content>
         <p style={{ textAlign: "center" }}>{`Você acertou ${countRightAnswers} perguntas`}</p>
         <ul>
-          {results.map((result, index) => (
-
-            <li key={`result__${index}`}>
-              {`#${index + 1} Resultado: ${result === true ? 'Acertou' : 'Errou'}`}
-            </li>
+          {questions.map((question, index) => (
+            <Widget.Topic data-answer={results[index]} key={`result__${index}`}>
+              {`${index+1}ª Pergunta: ${question.title}`}
+            </Widget.Topic>
           ))}
 
         </ul>
@@ -194,7 +193,7 @@ export default function QuizPage({ externalQuestions, externalBg, widgetStyle, n
         )}
         {screenState === screenStates.LOADING && <LoadingWidget />}
 
-        {screenState === screenStates.RESULT && <ResultWidget  widgetStyle={widgetStyle} results={results} name={name}/>}
+        {screenState === screenStates.RESULT && <ResultWidget questions={externalQuestions} widgetStyle={widgetStyle} results={results} name={name}/>}
       </QuizContainer>
     </QuizBackground>
   );

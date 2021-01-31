@@ -66,6 +66,14 @@ Widget.Topic = styled.a`
   &focus {
     opacity: .5;
   }
+
+  &[data-answer="true"]{
+    background-color: ${({ theme }) => theme.colors.success};
+  }
+
+  &[data-answer="false"]{
+    background-color: ${({ theme }) => theme.colors.wrong};
+  }
 `;
 
 export default Widget;
