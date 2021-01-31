@@ -12,7 +12,7 @@ import BackLinkArrow from "../../components/BackLinkArrow";
 
 function ResultWidget({ results, widgetStyle, name, questions }) {
   const countRightAnswers = results.filter((x) => x).length
-  const success = name ? `Parabéns, ${name}! Você é um verdadeiro conhecedor do universo!` : `Parabéns! Você é um verdadeiro conhecedor do universo!`
+  const success = name ? `Parabéns, ${name}! Você é um verdadeiro conhecedor da saga!` : `Parabéns! Você é um verdadeiro conhecedor da saga!`
   const failure = name ? `Que pena, ${name}! Não foi dessa vez!` : `Que pena! Não foi dessa vez!`
   
   return (
