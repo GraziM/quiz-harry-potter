@@ -111,7 +111,7 @@ export default function Home() {
           animate="show"        
         />
       </QuizContainer>
-      <GitHubCorner projectUrl="https://github.com/GraziM" />
+      <GitHubCorner projectUrl="https://github.com/GraziM/quiz-harry-potter" />
     </QuizBackground>
   );
 }
