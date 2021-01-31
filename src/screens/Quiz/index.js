@@ -10,15 +10,19 @@ import Button from '../../components/Button';
 import AlternativesForm from '../../components/AlternativesForm';
 import BackLinkArrow from "../../components/BackLinkArrow";
 
-function ResultWidget({ results, widgetStyle }) {
+function ResultWidget({ results, widgetStyle, name }) {
+  const countRightAnswers = results.filter((x) => x).length
+  const success = name ? `Parabéns, ${name}! Você é um verdadeiro conhecedor do universo!` : `Parabéns! Você é um verdadeiro conhecedor do universo!`
+  const failure = name ? `Que pena, ${name}! Não foi dessa vez!` : `Que pena! Não foi dessa vez!`
+  
   return (
     <Widget style={ widgetStyle ? widgetStyle : {}}>
-      <Widget.Header>
-        Resultados
+      <Widget.Header style={{ textAlign: "center" }}>
+        {countRightAnswers >= 5 ? success : failure}
       </Widget.Header>
 
       <Widget.Content>
-        <p>{`Você acertou ${results.filter((x) => x).length} perguntas`}</p>
+        <p style={{ textAlign: "center" }}>{`Você acertou ${countRightAnswers} perguntas`}</p>
         <ul>
           {results.map((result, index) => (
 
@@ -141,7 +145,7 @@ const screenStates = {
   LOADING: 'LOADING',
 };
 
-export default function QuizPage({ externalQuestions, externalBg, widgetStyle }) {
+export default function QuizPage({ externalQuestions, externalBg, widgetStyle, name }) {
   const [screenState, setScreenState] = React.useState(screenStates.LOADING);
   const [results, setResults] = React.useState([]);
   const totalQuestions = externalQuestions.length;
@@ -190,12 +194,13 @@ export default function QuizPage({ externalQuestions, externalBg, widgetStyle })
         )}
         {screenState === screenStates.LOADING && <LoadingWidget />}
 
-        {screenState === screenStates.RESULT && <ResultWidget  widgetStyle={widgetStyle} results={results} />}
+        {screenState === screenStates.RESULT && <ResultWidget  widgetStyle={widgetStyle} results={results} name={name}/>}
       </QuizContainer>
     </QuizBackground>
   );
 }
 
 QuizPage.defaultProps = {
-  widgetStyle: false
+  widgetStyle: false,
+  name: false
 }
