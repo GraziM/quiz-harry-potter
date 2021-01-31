@@ -32,10 +32,9 @@ export default function Home() {
           initial="hidden"
           animate="show"
         >
-          <Widget.Header>
-            <h1>Harry Potter Quiz</h1>
-          </Widget.Header>
+
           <Widget.Content>
+            <h1 style={{ marginBottom: "14px", fontSize: "36px" }}>Qual o seu nome, Bruxo(a)?</h1>
             <form onSubmit={(event) => {
               event.preventDefault();
               router.push(`/quiz?name=${name}`);
@@ -45,16 +44,16 @@ export default function Home() {
               <Input
                 name="nomeDoUsuario"
                 onChange={(event) => setName(event.target.value)}
-                placeholder="Diz aí o seu nome para jogar :)"
+                placeholder="Digite seu nome aqui"
                 value={name}
               />
               <Button type="submit" disabled={name.length === 0}>
-                {name === "" ? "Jogar" : `Olá, ${name}! Bora jogar?`}
+                {name === "" ? "Jogar" : `Começar Teste`}
               </Button>
             </form>
           </Widget.Content>
         </Widget>
-        <Widget
+        {/* <Widget
           as={motion.section}
           transition={{ delay: 0.1, duration: 0.5 }}
           variants={{
@@ -85,7 +84,7 @@ export default function Home() {
             </ul>
 
           </Widget.Content>
-        </Widget>
+        </Widget> */}
         <Footer 
           as={motion.footer}
           transition={{ delay: 0.2, duration: 0.5 }}

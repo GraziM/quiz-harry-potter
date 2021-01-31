@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Button = styled.button`
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: transparent;
   color: ${({ theme }) => theme.colors.contrastText};
   border-radius: ${({ theme }) => theme.borderRadius};
-  border: 0;
+  border: 1px solid #FFFFFF;
   width: 100%;
   padding: 10px 16px;
   font-weight: bold;
@@ -20,7 +20,9 @@ const Button = styled.button`
     opacity: .5;
   }
   &:disabled {
-    background-color: #979797;
+    background-color: transparent;
+    color: #979797;
+    border: 1px solid #979797;
     cursor: not-allowed;
   }
 `;

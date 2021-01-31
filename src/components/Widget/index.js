@@ -10,13 +10,13 @@ const Widget = styled.div`
 
   h1, h2, h3 {
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1;
     margin-bottom: 0;
   }
   p {
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 200;
     line-height: 1;
   }
 `;
@@ -26,8 +26,9 @@ Widget.Header = styled.header`
   justify-content: flex-start;
   align-items: center;
   padding: 18px 32px;
-  background-color: ${({ theme }) => theme.colors.primary};
-
+  background-color: transparent;
+  color: ${(({ theme }) => theme.colors.contrastText) === (({ theme }) => theme.colors.primary) ? "#000000" : (({ theme }) => theme.colors.contrastText)};
+  
   * {
     margin: 0;
   }
@@ -56,6 +57,7 @@ Widget.Topic = styled.a`
   padding: 10px 15px;
   margin-bottom: 8px;
   cursor: pointer;
+  border: 1px solid ${({ theme }) => `${theme.colors.primary}40`};
   border-radius: ${({ theme }) => theme.borderRadius};
   transition: .3s;
   display: block; 

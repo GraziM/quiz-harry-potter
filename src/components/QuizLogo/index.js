@@ -12,12 +12,20 @@ const LogoImage = styled.img.attrs({
   margin: 0 auto;
 `;
 
+const LogoText = styled.div`
+  padding-top: 24px;
+  width: 150%;
+  color: #FFFFFF;
+  font-size: 80px;
+  font-family: 'Cormorant SC', serif;
+`
+
 const LogoQuiz = styled.img;
 
 function Logo({ className }) {
   return (
     <>
-      <LogoImage />
+      <LogoText>Harry Potter <p style={{ padding: 0, margin: 0, color: `${({ theme }) => `${theme.colors.secondary}`}` }}>Quiz</p></LogoText>
     </>
   );
 }
@@ -27,8 +35,10 @@ Logo.propTypes = {
 };
 
 const QuizLogo = styled(Logo)`
-  margin: auto;
+  margin: 0;
   display: block;
+  position: relative;
+  right: 0;
   @media screen and (max-width: 500px) {
     margin: 0;
   }

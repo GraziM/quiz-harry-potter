@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Lottie from 'react-lottie'
-import loadingAnimation from '../../lotties/loading-animation.json'
 
+import loadingAnimation from '../../lotties/loading-animation.json'
 import Widget from '../../components/Widget';
 import QuizBackground from '../../components/QuizBackground';
 import QuizContainer from '../../components/QuizContainer';
@@ -9,9 +10,9 @@ import Button from '../../components/Button';
 import AlternativesForm from '../../components/AlternativesForm';
 import BackLinkArrow from "../../components/BackLinkArrow";
 
-function ResultWidget({ results }) {
+function ResultWidget({ results, widgetStyle }) {
   return (
-    <Widget>
+    <Widget style={ widgetStyle ? widgetStyle : {}}>
       <Widget.Header>
         Resultados
       </Widget.Header>
@@ -56,7 +57,7 @@ function LoadingWidget() {
 }
 
 function QuestionWidget({
-  question, totalQuestions, questionIndex, onSubmit, addResult,
+  question, totalQuestions, questionIndex, onSubmit, addResult, widgetStyle
 }) {
   const [selectedAlternative, setSelectedAlternative] = React.useState(undefined);
   const [isQuestionSubmited, setIsQuestionSubmited] = React.useState(false);
@@ -65,7 +66,7 @@ function QuestionWidget({
   const hasAlternativeSelected = selectedAlternative !== undefined;
 
   return (
-    <Widget>
+    <Widget style={ widgetStyle ? widgetStyle : {}}>
       <Widget.Header>
         <BackLinkArrow href="/" />
         <h3>
@@ -120,12 +121,14 @@ function QuestionWidget({
             );
           })}
 
+          <div style={{ margin: 0, padding: 0, textAlign: "center" }}>
+            {isQuestionSubmited && isCorrect && <p>Você acertou!</p>}
+            {isQuestionSubmited && !isCorrect && <p>Você errou!</p>}
+          </div>
+
           <Button type="submit" disabled={!hasAlternativeSelected || isQuestionSubmited}>
             Confirmar
           </Button>
-
-          {isQuestionSubmited && isCorrect && <p>Você acertou!</p>}
-          {isQuestionSubmited && !isCorrect && <p>Você errou!</p>}
         </AlternativesForm>
       </Widget.Content>
     </Widget>
@@ -138,7 +141,7 @@ const screenStates = {
   LOADING: 'LOADING',
 };
 
-export default function QuizPage({ externalQuestions, externalBg }) {
+export default function QuizPage({ externalQuestions, externalBg, widgetStyle }) {
   const [screenState, setScreenState] = React.useState(screenStates.LOADING);
   const [results, setResults] = React.useState([]);
   const totalQuestions = externalQuestions.length;
@@ -177,6 +180,7 @@ export default function QuizPage({ externalQuestions, externalBg }) {
       <QuizContainer style={screenState === screenStates.LOADING ? style : {}}>
         {screenState === screenStates.QUIZ && (
           <QuestionWidget
+            widgetStyle={widgetStyle}
             question={question}
             totalQuestions={totalQuestions}
             questionIndex={currentQuestion}
@@ -186,8 +190,12 @@ export default function QuizPage({ externalQuestions, externalBg }) {
         )}
         {screenState === screenStates.LOADING && <LoadingWidget />}
 
-        {screenState === screenStates.RESULT && <ResultWidget results={results} />}
+        {screenState === screenStates.RESULT && <ResultWidget  widgetStyle={widgetStyle} results={results} />}
       </QuizContainer>
     </QuizBackground>
   );
+}
+
+QuizPage.defaultProps = {
+  widgetStyle: false
 }

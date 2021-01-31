@@ -9,6 +9,7 @@ export default function QuizIndex(){
     <QuizScreen 
       externalQuestions={db.questions}
       externalBg={db.bg}
+      widgetStyle={{ border: "1px solid #FFFFFF" }}
     />
   )
 }
