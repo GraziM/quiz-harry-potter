@@ -25,10 +25,21 @@ export default function Home() {
   return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
-        <QuizLogo />
+        <QuizLogo 
+          as={motion.div}
+          transition={{ delay: 0, duration: 0.5 }}
+          variants={{
+            show: { opacity: 1, y: '0' },
+            hidden: { opacity: 0, y: "100%" },
+          }}
+          initial="hidden"
+          animate="show"
+        >
+          Harry Potter <p style={{ padding: 0, margin: 0, color: `${({ theme }) => `${theme.colors.secondary}`}` }}>Quiz</p>
+        </QuizLogo>
         <Widget
           as={motion.section}
-          transition={{ delay: 0, duration: 0.5 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
           variants={{
             show: { opacity: 1, y: '0' },
             hidden: { opacity: 0, y: "100%" },

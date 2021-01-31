@@ -18,23 +18,6 @@ const LogoText = styled.div`
   color: #FFFFFF;
   font-size: 80px;
   font-family: 'Cormorant SC', serif;
-`
-
-const LogoQuiz = styled.img;
-
-function Logo({ className }) {
-  return (
-    <>
-      <LogoText>Harry Potter <p style={{ padding: 0, margin: 0, color: `${({ theme }) => `${theme.colors.secondary}`}` }}>Quiz</p></LogoText>
-    </>
-  );
-}
-
-Logo.propTypes = {
-  className: PropTypes.string.isRequired,
-};
-
-const QuizLogo = styled(Logo)`
   margin: 0;
   display: block;
   position: relative;
@@ -42,6 +25,30 @@ const QuizLogo = styled(Logo)`
   @media screen and (max-width: 500px) {
     margin: 0;
   }
-`;
+`
 
-export default QuizLogo;
+const LogoQuiz = styled.img;
+
+function Logo({ className }) {
+  return (
+    <section>
+      <LogoText>Harry Potter <p style={{ padding: 0, margin: 0, color: `${({ theme }) => `${theme.colors.secondary}`}` }}>Quiz</p></LogoText>
+    </section>
+  );
+}
+
+Logo.propTypes = {
+  className: PropTypes.string.isRequired,
+};
+
+// const QuizLogo = styled(Logo)`
+//   margin: 0;
+//   display: block;
+//   position: relative;
+//   right: 0;
+//   @media screen and (max-width: 500px) {
+//     margin: 0;
+//   }
+// `;
+
+export default LogoText;
