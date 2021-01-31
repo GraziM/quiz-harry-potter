@@ -14,6 +14,7 @@ const LogoImage = styled.img.attrs({
 
 const LogoText = styled.div`
   padding-top: 24px;
+  max-width: 90vw;
   width: 150%;
   color: #FFFFFF;
   font-size: 80px;
