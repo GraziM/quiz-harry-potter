@@ -18,6 +18,10 @@ export default function Home() {
   const router = useRouter();
   const [name, setName] = React.useState('');
 
+  const widgetContentStyle = {
+    padding: "24px 32px 32px 0px",
+  }
+
   return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
@@ -33,7 +37,7 @@ export default function Home() {
           animate="show"
         >
 
-          <Widget.Content>
+          <Widget.Content style={widgetContentStyle}>
             <h1 style={{ marginBottom: "14px", fontSize: "36px" }}>Qual o seu nome, Bruxo(a)?</h1>
             <form onSubmit={(event) => {
               event.preventDefault();
