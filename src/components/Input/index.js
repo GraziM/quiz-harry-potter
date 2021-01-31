@@ -7,6 +7,7 @@ const InputBase = styled.input`
     max-width: 100vw;
     width: 400px;
     padding: 15px;
+    padding-left: 0px;
     font-size: 24px;
     border: none;
     border-bottom: 3px solid #FFFFFF;

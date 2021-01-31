@@ -35,7 +35,7 @@ export default function Home() {
           initial="hidden"
           animate="show"
         >
-          Harry Potter <p style={{ padding: 0, margin: 0, color: `${({ theme }) => `${theme.colors.secondary}`}` }}>Quiz</p>
+          Harry Potter <p style={{ padding: 0, margin: 0 }}>Quiz</p>
         </QuizLogo>
         <Widget
           as={motion.section}

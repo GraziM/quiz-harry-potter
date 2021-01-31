@@ -47,7 +47,7 @@ function LoadingWidget() {
   }
 
   return (
-    <Widget style={{ backgroundColor: "transparent" }}>
+    <Widget style={{ backgroundColor: "transparent", padding: 0, margin: 0 }}>
       <Widget.Content>
         <Lottie 
             options={defaultOptions}
@@ -151,9 +151,6 @@ export default function QuizPage({ externalQuestions, externalBg, widgetStyle, n
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
   const questionIndex = currentQuestion;
   const question = externalQuestions[questionIndex];
-  const style = {
-    margin: 'auto'
-  }
 
   function addResult(result) {
     setResults([
@@ -180,7 +177,7 @@ export default function QuizPage({ externalQuestions, externalBg, widgetStyle, n
 
   return (
     <QuizBackground backgroundImage={externalBg}>
-      <QuizContainer style={screenState === screenStates.LOADING ? style : {}}>
+      <QuizContainer>
         {screenState === screenStates.QUIZ && (
           <QuestionWidget
             widgetStyle={widgetStyle}
