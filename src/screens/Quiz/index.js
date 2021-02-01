@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Lottie from 'react-lottie'
 
 import loadingAnimation from '../../lotties/loading-animation.json'
@@ -9,6 +10,11 @@ import QuizContainer from '../../components/QuizContainer';
 import Button from '../../components/Button';
 import AlternativesForm from '../../components/AlternativesForm';
 import BackLinkArrow from "../../components/BackLinkArrow";
+
+const P = styled.p`
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+`
 
 function ResultWidget({ results, widgetStyle, name, questions }) {
   const countRightAnswers = results.filter((x) => x).length
@@ -125,8 +131,8 @@ function QuestionWidget({
           })}
 
           <div style={{ margin: 0, padding: 0, textAlign: "center" }}>
-            {isQuestionSubmited && isCorrect && <p>Você acertou!</p>}
-            {isQuestionSubmited && !isCorrect && <p>Você errou!</p>}
+            {isQuestionSubmited && isCorrect && <P>Você acertou!</P>}
+            {isQuestionSubmited && !isCorrect && <P>Você errou!</P>}
           </div>
 
           <Button type="submit" disabled={!hasAlternativeSelected || isQuestionSubmited}>

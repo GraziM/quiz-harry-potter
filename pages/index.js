@@ -19,13 +19,14 @@ export default function Home() {
   const [name, setName] = React.useState('');
 
   const widgetContentStyle = {
-    padding: "24px 32px 32px 0px",
+    padding: "24px 32px 32px 32px",
   }
 
   return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
         <QuizLogo 
+          style={{ paddingLeft: "32px" }}
           as={motion.div}
           transition={{ delay: 0, duration: 0.5 }}
           variants={{

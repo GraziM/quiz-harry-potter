@@ -1,7 +1,12 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { motion } from "framer-motion";
 
-const Button = styled.button`
+const Button = styled.button.attrs({
+  as: motion.button,
+  whileHover: { scale: 1.05 },
+  whileTap: { scale:0.95 },
+})`
   background-color: transparent;
   color: ${({ theme }) => theme.colors.contrastText};
   border-radius: ${({ theme }) => theme.borderRadius};
