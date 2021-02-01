@@ -58,11 +58,11 @@ Widget.Topic = styled.a`
   outline: 0;
   text-decoration: none;
   color: ${({ theme }) => theme.colors.contrastText};
-  background-color: ${({ theme }) => `${theme.colors.primary}40`};
+  background-color: ${({ theme }) => `${theme.colors.mainBg}40`};
   padding: 10px 15px;
   margin-bottom: 8px;
   cursor: pointer;
-  border: 1px solid ${({ theme }) => `${theme.colors.primary}40`};
+  border: 1px solid ${({ theme }) => `${theme.colors.contrastText}`};
   border-radius: ${({ theme }) => theme.borderRadius};
   transition: .3s;
   display: block; 

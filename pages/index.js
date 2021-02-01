@@ -30,8 +30,8 @@ export default function Home() {
           as={motion.div}
           transition={{ delay: 0, duration: 0.5 }}
           variants={{
-            show: { opacity: 1, y: '0' },
-            hidden: { opacity: 0, y: "100%" },
+            show: { opacity: 1, x: '0' },
+            hidden: { opacity: 0, x: "100%" },
           }}
           initial="hidden"
           animate="show"
@@ -42,8 +42,8 @@ export default function Home() {
           as={motion.section}
           transition={{ delay: 0.1, duration: 0.5 }}
           variants={{
-            show: { opacity: 1, y: '0' },
-            hidden: { opacity: 0, y: "100%" },
+            show: { opacity: 1, x: '0' },
+            hidden: { opacity: 0, x: "100%" },
           }}
           initial="hidden"
           animate="show"
@@ -105,8 +105,8 @@ export default function Home() {
           as={motion.footer}
           transition={{ delay: 0.2, duration: 0.5 }}
           variants={{
-            show: { opacity: 1, y: '0' },
-            hidden: { opacity: 0, y: "100%" },
+            show: { opacity: 1, x: '0' },
+            hidden: { opacity: 0, x: "100%" },
           }}
           initial="hidden"
           animate="show"        

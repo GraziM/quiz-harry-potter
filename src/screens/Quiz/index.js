@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { motion } from "framer-motion";
 import Lottie from 'react-lottie'
 
 import loadingAnimation from '../../lotties/loading-animation.json'
@@ -31,7 +32,14 @@ function ResultWidget({ results, widgetStyle, name, questions }) {
         <p style={{ textAlign: "center" }}>{`Você acertou ${countRightAnswers} perguntas`}</p>
         <ul>
           {questions.map((question, index) => (
-            <Widget.Topic data-answer={results[index]} key={`result__${index}`}>
+            <Widget.Topic
+            data-answer={results[index]} 
+            key={`result__${index}`}
+            as={motion.a}
+            transition={{ duration: 0.1 }}
+            whileHover={{ x: "-2%", y: "-2%" }}
+            whileTap={ { scale: 0.95} }
+            >
               {`${index+1}ª Pergunta: ${question.title}`}
             </Widget.Topic>
           ))}
@@ -113,7 +121,10 @@ function QuestionWidget({
             return (
               <Widget.Topic
                 key={alternativeId}
-                as="label"
+                as={motion.label}
+                transition={{ duration: 0.1 }}
+                whileHover={{ x: "-2%", y: "-2%" }}
+                whileTap={ { scale: 0.95} }
                 htmlFor={alternativeId}
                 data-selected={isSelected}
                 data-status={isQuestionSubmited && AlternativeStatus}
